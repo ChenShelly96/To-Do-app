@@ -1,0 +1,35 @@
+/* src/components/Sidebar.css */
+.sidebar {
+    width: 250px;
+    background-color: #f5f5f5;
+    padding: 20px;
+    height: 100vh;
+    position: fixed;
+  }
+  
+  .sidebar-section {
+    margin-bottom: 30px;
+  }
+  
+  .sidebar-section h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .sidebar-section span {
+    margin-left: 10px;
+  }
+  
+  .project-list h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .project-item {
+    padding: 10px;
+    background-color: #4a90e2;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  

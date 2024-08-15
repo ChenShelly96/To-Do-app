@@ -1,0 +1,29 @@
+/* src/components/TaskRow.css */
+.avatar {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background-color: #ccc;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 24px;
+    color: white;
+    font-size: 12px;
+  }
+  
+  .status {
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .priority {
+    font-weight: bold;
+  }
+  
+  input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    vertical-align: middle;
+  }
+  
