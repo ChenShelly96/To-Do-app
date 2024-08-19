@@ -40,7 +40,8 @@ const TaskRow = ({ task, updateTask }) => {
       <td className={`status ${editableTask.status.replace(/ /g, '-')}`}>
         <select
           value={editableTask.status}
-          onChange={(e) => handleChange('status', e.target.value)}
+          onChange={(e) => handleStatusChange}
+          /*onChange={(e) => handleChange('status', e.target.value)}*/
         >
           <option value="Working on it">Working on it</option>
           <option value="Done">Done</option>
@@ -71,13 +72,7 @@ const TaskRow = ({ task, updateTask }) => {
           onChange={(e) => handleChange('notes', e.target.value)}
         />
       </td>
-      <td>
-        <input
-          type="number"
-          value={editableTask.budget}
-          onChange={(e) => handleChange('budget', e.target.value)}
-        />
-      </td>
+    
       <td>
         <input
           type="text"
