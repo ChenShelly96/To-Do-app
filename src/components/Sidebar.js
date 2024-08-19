@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaHome, FaStar, FaTasks } from 'react-icons/fa';
+import '../App.css';
 import '../styles/Sidebar.css';
 
 const Sidebar = () => {

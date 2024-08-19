@@ -1,29 +1,106 @@
 /* src/components/TaskRow.css */
+
+/* Avatar styling */
 .avatar {
     display: inline-block;
-    width: 24px;
-    height: 24px;
+    width: 35px;
+    height: 35px;
     background-color: #ccc;
-    border-radius: 50%;
+    border-radius: 55%;
     text-align: center;
-    line-height: 24px;
+    line-height: 34px;
     color: white;
     font-size: 12px;
-  }
-  
-  .status {
-    cursor: pointer;
+}
+
+/* Status styling */
+.status {
     font-weight: bold;
-  }
-  
-  .priority {
+    width: 100px;
+    height: 38px;
+    vertical-align: middle;
+    margin-top: 3px;
+}
+
+/* Priority styling */
+.priority {
     font-weight: bold;
-  }
-  
-  input[type="checkbox"] {
+    width: 100px;
+    height: 38px;
+    vertical-align: middle;
+    margin-top: 3px;
+}
+
+/* General input styling */
+input[type="text"],
+input[type="date"],
+input[type="number"],
+select {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: transparent; /* Make background transparent */
+    font-size: inherit;
+    color: inherit;
+    padding: 5px 10px;
+    margin: 0;
+    box-shadow: none; /* Remove box shadow */
+    outline: none; /* Remove focus outline */
+}
+
+/* Specific styling for different priority levels */
+.priority.Low {
+    background-color: #86B6FB; /* Light purple/blue color */
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.priority.Medium {
+    background-color: #5559DF; /* Medium purple color */
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.priority.High {
+    background-color: #401694; /* Light pinkish-purple color */
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+/* Checkbox input styling */
+input[type="checkbox"] {
     width: 18px;
     height: 18px;
-    margin: 0;
+    margin: 2px;
     vertical-align: middle;
-  }
-  
+}
+
+/* Table cell styling */
+.task-table th, .task-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+    background-color: white; /* Make table cells white */
+    color: #333;
+}
+
+/* Table header styling */
+.task-table th {
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+/* Dropdown menu styling */
+select {
+    color: black; /* Change text color to black */
+}
+
+select option {
+    color: black; /* Ensure that the options inside the dropdown have black text */
+}

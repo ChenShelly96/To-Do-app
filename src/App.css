@@ -2,18 +2,37 @@
 body, html {
     height: 100%;
     margin: 0;
-    overflow: hidden;
-    background-color: white;
-  }
-  
-  .App {
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+.App {
     display: flex;
     font-family: Arial, sans-serif;
     height: 100%;
-    background-color: white;
+    min-height: 100vh;
+    background:  #2b2c43;
   }
+  .container {
+    
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+.todo h2{
+color:#74ABFC;
+
+}
+
+.table {
+    width: 100%;
+    margin-bottom: 20px;
+    background: #11131E;
+}
+ 
   
   .sidebar {
+    flex-shrink: 0;
     width: 250px;
     background-color: #f5f5f5;
     padding: 20px;
@@ -32,7 +51,8 @@ body, html {
   }
   
   .task-section {
-    margin-bottom: 40px;
+    margin-bottom: 30px;
+    background-color: white;
   }
   
   .task-section h2 {
@@ -46,8 +66,8 @@ body, html {
     color: #4a90e2;
   }
   
-  .task-section.completed h2 {
-    color: #27ae60;
+  .completed h2 {
+    color: #25D089;
   }
   
   .task-table table {
@@ -71,16 +91,19 @@ body, html {
   .task-table th:first-child,
   .task-table td:first-child {
     width: 30px;
+    color:#ddd;
   }
   
   .task-table th:nth-child(2),
   .task-table td:nth-child(2) {
     width: 150px;
+    color:#ddd;
   }
   
   .task-table th:last-child,
   .task-table td:last-child {
     width: 100px;
+    
   }
   
   .task-table th {
@@ -121,7 +144,7 @@ body, html {
     display: inline-block;
   }
   
-  .priority.Low {
+  /*.priority.Low {
     background-color: #3498db;
     color: white;
     padding: 5px 10px;
@@ -143,7 +166,7 @@ body, html {
     padding: 5px 10px;
     border-radius: 5px;
     display: inline-block;
-  }
+  }*/
   
   .task-table button {
     margin-top: 10px;
@@ -166,3 +189,72 @@ body, html {
     margin: 5px 0;
   }
   
+
+
+  /* design for wide screens */
+  @media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .main-content {
+        width: 100%;
+    }
+
+    .task-table th, .task-table td {
+        padding: 10px 5px;
+        font-size: 14px;
+    }
+
+    .add-task-button {
+        width: 100%;
+        margin-top: 10px;
+    }
+}
+   
+   /* design for narrow screens (mobile) */
+   @media (max-width: 767px) {
+    .sidebar {
+    width: 100%;
+    margin-bottom: 20px;
+    }
+   
+    .main-content {
+    width: 100%;
+    }
+   
+    .task-table th, .task-table td {
+    padding: 10px 5px;
+    font-size: 14px;
+    }
+   
+    .add-task-button {
+    width: 100%;
+    margin-top: 10px;
+    }
+   }
+
+   @media (max-width: 600px) {
+    .task-row {
+        display: block;
+        margin-bottom: 10px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+    .task-row > div {
+        margin-bottom: 5px;
+    }
+}
+@media (max-width: 600px) {
+    h1, h2 {
+        font-size: 1.5rem;
+    }
+
+    button {
+        padding: 10px 15px;
+        font-size: 1rem;
+    }
+}
