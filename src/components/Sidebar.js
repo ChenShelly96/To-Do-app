@@ -1,5 +1,6 @@
 import React from 'react';
-import { FaHome, FaStar, FaTasks } from 'react-icons/fa';
+import { FaHome, FaTasks } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import '../App.css';
 import '../styles/Sidebar.css';
 
@@ -8,19 +9,31 @@ const Sidebar = () => {
     <div className="sidebar">
       <div className="sidebar-section">
         <h3>Home</h3>
-        <FaHome /> <span>Home</span>
+        <Link to="/">
+          <FaHome /> <span>Home</span>
+        </Link>
       </div>
       <div className="sidebar-section">
         <h3>My Work</h3>
-        <FaTasks /> <span>My Tasks</span>
+        <Link to="/tasks">
+          <FaTasks /> <span>My Tasks</span>
+        </Link>
       </div>
-      <div className="sidebar-section">
+     {/* <div className="sidebar-section">
         <h3>Favorites</h3>
-        <FaStar /> <span>Favorites</span>
-      </div>
+        <Link to="/favorites">
+          <FaStar /> <span>Favorites</span>
+        </Link>
+      </div>*/}
       <div className="project-list">
         <h3>Main Workspace</h3>
-        <div className="project-item">My Project</div>
+       {/* <Link to="/project">
+          <div className="project-item">My Project</div>
+        </Link>*/}
+       
+        <Link to="/productivity">
+          <div className="project-item">Productivity</div>
+        </Link>
       </div>
     </div>
   );

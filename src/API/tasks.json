@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "name": "Task 1",
+    "owner": "CurrentUser",
+    "status": "Done",
+    "dueDate": "",
+    "priority": "Medium",
+    "notes": "",
+    "timeline": "",
+    "location": "",
+    "lastUpdated": "2024-08-21"
+  },
+  {
+    "id": 2,
+    "name": "Task 2",
+    "owner": "CurrentUser",
+    "status": "Stuck",
+    "dueDate": "2024-08-22",
+    "priority": "Low",
+    "notes": "",
+    "timeline": "",
+    "location": "",
+    "lastUpdated": "2024-08-21"
+  },
+  {
+    "id": 3,
+    "name": "Task 3",
+    "owner": "CurrentUser",
+    "status": "Working on it",
+    "dueDate": "2024-08-21",
+    "priority": "High",
+    "notes": "",
+    "timeline": "",
+    "location": "",
+    "lastUpdated": "2024-08-21"
+  },
+  {
+    "id": 4,
+    "name": "Task 4",
+    "owner": "CurrentUser",
+    "status": "Done",
+    "dueDate": "",
+    "priority": "Low",
+    "notes": "",
+    "timeline": "",
+    "location": "",
+    "lastUpdated": "2024-08-21"
+  }
+]

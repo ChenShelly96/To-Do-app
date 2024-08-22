@@ -1,34 +1,47 @@
-// src/components/TaskRow.js
+import axios from 'axios';
 import React, { useState } from 'react';
 import '../App.css';
 import '../styles/TaskRow.css';
+import { calculateLastUpdated } from '../utils/Functions';
 
-const TaskRow = ({ task, updateTask }) => {
+const TaskRow = ({ task, updateTask, deleteTask, onTaskSelect }) => {
   const [editableTask, setEditableTask] = useState(task);
   const [location, setLocation] = useState(task.location || "");
+  const [isChecked, setIsChecked] = useState(false);
 
-  // Function to handle status change
-  const handleStatusChange = () => {
-    const newStatus = editableTask.status === 'Done' ? 'Working on it' : 'Done';
-    handleChange('status', newStatus);
-  };
-
-  // Function to handle input change for any field
-  const handleChange = (field, value) => {
-    const updatedTask = { ...editableTask, [field]: value };
+  // Function to handle input change for any field and send API update request
+  const handleChange = async (field, value) => {
+    const now = new Date().toISOString(); // Get current date and time
+    const updatedTask = { ...editableTask, [field]: value, lastUpdated: now };
     setEditableTask(updatedTask);
-    updateTask(task.id, updatedTask);
+
+    try {
+      await axios.put(`/api/tasks/${editableTask.id}`, updatedTask);
+      updateTask(editableTask.id, updatedTask); // Update the task in the parent component
+    } catch (error) {
+      console.error('Failed to update task:', error);
+    }
   };
 
-  // Function to handle location change
   const handleLocationChange = (newCity) => {
-    setLocation(newCity); // Update the local state
-    handleChange('location', newCity); // Update the task's location
+    setLocation(newCity);
+    handleChange('location', newCity);
+  };
+
+  const handleCheckboxChange = (e) => {
+    setIsChecked(e.target.checked);
+    onTaskSelect(e.target.checked ? task : null);
   };
 
   return (
     <tr className="task-row">
-      <td><input type="checkbox" /></td>
+      <td>
+        <input
+          type="checkbox"
+          checked={isChecked}
+          onChange={handleCheckboxChange}
+        />
+      </td>
       <td>
         <input
           type="text"
@@ -40,9 +53,9 @@ const TaskRow = ({ task, updateTask }) => {
       <td className={`status ${editableTask.status.replace(/ /g, '-')}`}>
         <select
           value={editableTask.status}
-          onChange={(e) => handleStatusChange}
-          /*onChange={(e) => handleChange('status', e.target.value)}*/
+          onChange={(e) => handleChange('status', e.target.value)}
         >
+          <option value="Not Started">Not Started</option>
           <option value="Working on it">Working on it</option>
           <option value="Done">Done</option>
           <option value="Stuck">Stuck</option>
@@ -72,7 +85,6 @@ const TaskRow = ({ task, updateTask }) => {
           onChange={(e) => handleChange('notes', e.target.value)}
         />
       </td>
-    
       <td>
         <input
           type="text"
@@ -80,8 +92,7 @@ const TaskRow = ({ task, updateTask }) => {
           onChange={(e) => handleChange('timeline', e.target.value)}
         />
       </td>
-      <td>44 minutes ago</td>
-  
+      <td>{calculateLastUpdated(editableTask.lastUpdated)}</td>
       <td>
         <input
           type="text"

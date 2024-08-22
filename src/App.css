@@ -1,5 +1,6 @@
 /* src/App.css */
 body, html {
+    display:grid;
     height: 100%;
     margin: 0;
     padding: 0;
@@ -7,11 +8,11 @@ body, html {
     font-family: Arial, sans-serif;
 }
 .App {
-    display: flex;
+    /*display: flex;*/
     font-family: Arial, sans-serif;
     height: 100%;
     min-height: 100vh;
-    background:  #2b2c43;
+    background:  #181B34;
   }
   .container {
     

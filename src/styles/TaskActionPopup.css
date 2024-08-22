@@ -1,0 +1,41 @@
+/* src/styles/TaskActionPopup.css */
+.task-action-popup {
+    position: fixed;
+    width: 50%;
+    margin:auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #34354B;
+    color: #ffffff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #ffffff;
+  }
+  
+  .popup-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 50%;
+  }
+  
+  .task-info {
+    flex-grow: 1;
+  }
+  
+  .task-actions button {
+    margin-left: 10px;
+    background-color: #394b5a;
+    border: none;
+    color: #ffffff;
+    padding: 10px 15px;
+    cursor: pointer;
+  }
+  
+  .task-actions button:hover {
+    background-color: #2a3a4b;
+  }
+  

@@ -1,0 +1,70 @@
+/* src/styles/ProductivityPage.css */
+
+.productivity-page {
+    display: grid;
+    flex-direction: column; /* Arranges content in a column */
+    justify-content: center; /* Centers the content horizontally */
+    align-items: center; /* Centers the content vertically */
+    /*height: 100vh;  Makes the page take the full height of the viewport */
+    text-align: center;
+    color: white;
+    background-color: #484ca5; /* Add a background color to distinguish the section */
+    padding:20px 0; /* Removes any extra padding */
+;
+    
+}
+
+.progress-bar-container {
+    width: 100%; 
+    max-width: 300px; 
+    background-color: #26263f;
+    padding: 20px; 
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Adds a shadow for depth */
+    text-align: center;
+    margin-top: 70px;
+    margin-right: 10%;
+    margin-left: auto;
+    margin-bottom: 2px;
+ 
+   
+   
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+h3 {
+    margin-bottom: 10px;
+}
+
+.work-hours-chart  {
+    width: 100%; 
+    height: 600px;
+    max-width: 700px; 
+    background-color: #26263f;
+    padding: 20px; 
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Adds a shadow for depth */
+    text-align: center;
+    margin-top: 100px;
+    margin-right: -160%;
+    margin-left: 10%;
+    margin-bottom: 2px;
+
+  }
+  .recharts-responsive-container {
+    width: 100%;
+  
+    min-width: 10px;
+    margin-left: 300%;
+    margin-bottom: 10%;
+
+ 
+    
+  }
+  .recharts-surface{
+    margin-left: -600%;
+
+  }
