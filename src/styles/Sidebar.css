@@ -25,11 +25,12 @@
     margin-bottom: 10px;
   }
   
-  .project-item {
-    padding: 10px;
-    background-color: #4a90e2;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-  }
   
+  
+  .active-link {
+    background-color: #3c264c;
+    color: white;
+    border-radius: 10px;
+    display: inline-block;
+    padding: 20px; 
+  }

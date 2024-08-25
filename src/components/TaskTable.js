@@ -27,9 +27,18 @@ const TaskTable = () => {
     fetchTasks();
   }, []);
 
+
+  const formatDateTime = (date) => {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    return `${year}-${month}-${day} ${hours}:${minutes}`;
+  };
   // Add a new task
   const addTask = async () => {
-    const now = new Date().toISOString().split('T')[0]; // Current date as YYYY-MM-DD
+    const now = formatDateTime(new Date());
     const newTask = {
       name: `Task ${tasks.length + 1}`,
       owner: 'CurrentUser',  // Replace with the current user's name
@@ -39,7 +48,9 @@ const TaskTable = () => {
       notes: '',
       timeline: '',
       location: '',
-      lastUpdated: now,  // Set the current date as the last updated date
+      lastUpdated: now, 
+      startTime: now,
+      endTime: null,
     };
 
     try {
@@ -51,10 +62,14 @@ const TaskTable = () => {
     }
   };
 
-  // Update an existing task
-  const updateTask = async (id, updatedTask) => {
-    const now = new Date().toISOString().split('T')[0]; // Current date as YYYY-MM-DD
+   // Update an existing task
+   const updateTask = async (id, updatedTask) => {
+    const now = formatDateTime(new Date()); // Current date and time as YYYY-MM-DD HH:MM
     updatedTask.lastUpdated = now;
+
+    if (updatedTask.status === 'Done' && !updatedTask.endTime) {
+      updatedTask.endTime = now; 
+    }
 
     try {
       const response = await axios.put(`/api/tasks/${id}`, updatedTask);

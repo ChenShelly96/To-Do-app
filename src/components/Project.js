@@ -1,4 +1,3 @@
-// src/components/Project.js
 import React from 'react';
 import '../App.css';
 import '../styles/Project.css';
@@ -9,7 +8,10 @@ const Project = () => {
     <div className="project">
       <h1>My Project</h1>
       <h2>Main Table</h2>
+
+ 
       <TaskTable />
+      
     </div>
   );
 };

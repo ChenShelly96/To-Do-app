@@ -7,6 +7,7 @@
         "@testing-library/jest-dom": "^5.17.0",
         "@testing-library/react": "^13.4.0",
         "@testing-library/user-event": "^13.5.0",
+        "apexcharts": "^3.52.0",
         "axios": "^1.7.4",
         "body-parser": "^1.20.2",
         "chart.js": "^4.4.3",
@@ -19,6 +20,7 @@
         "mongodb": "^6.8.0",
         "mongoose": "^8.5.3",
         "react": "^18.2.0",
+        "react-apexcharts": "^1.4.1",
         "react-chartjs-2": "^5.2.0",
         "react-circular-progressbar": "^2.1.0",
         "react-dom": "^18.2.1",
@@ -31,11 +33,11 @@
     },
     "scripts": {
         "start": "concurrently \"npm run client\" \"npm run server\"",
-    "client": "react-scripts start",
-    "server": "node src/api/app.js",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+        "client": "react-scripts start",
+        "server": "node src/api/app.js",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject"
     },
     "proxy": "http://localhost:5000",
     "eslintConfig": {

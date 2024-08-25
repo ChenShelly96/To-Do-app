@@ -1,50 +1,89 @@
-[
-  {
-    "id": 1,
-    "name": "Task 1",
-    "owner": "CurrentUser",
-    "status": "Done",
-    "dueDate": "",
-    "priority": "Medium",
-    "notes": "",
-    "timeline": "",
-    "location": "",
-    "lastUpdated": "2024-08-21"
-  },
-  {
-    "id": 2,
-    "name": "Task 2",
-    "owner": "CurrentUser",
-    "status": "Stuck",
-    "dueDate": "2024-08-22",
-    "priority": "Low",
-    "notes": "",
-    "timeline": "",
-    "location": "",
-    "lastUpdated": "2024-08-21"
-  },
-  {
-    "id": 3,
-    "name": "Task 3",
-    "owner": "CurrentUser",
-    "status": "Working on it",
-    "dueDate": "2024-08-21",
-    "priority": "High",
-    "notes": "",
-    "timeline": "",
-    "location": "",
-    "lastUpdated": "2024-08-21"
-  },
-  {
-    "id": 4,
-    "name": "Task 4",
-    "owner": "CurrentUser",
-    "status": "Done",
-    "dueDate": "",
-    "priority": "Low",
-    "notes": "",
-    "timeline": "",
-    "location": "",
-    "lastUpdated": "2024-08-21"
-  }
-]
+{
+  "taskList": [
+    {
+      "idTask": 6,
+      "name": "Task 6",
+      "owner": "CurrentUser",
+      "status": "Done",
+      "dueDate": "",
+      "priority": "Low",
+      "notes": "",
+      "timeline": "",
+      "location": "",
+      "lastUpdated": "2024-08-22 12:50",
+      "startTime": "2024-08-22 07:00",
+      "endTime": "2024-08-22 12:50",
+      "id": 6
+    },
+    {
+      "name": "Task 3",
+      "owner": "CurrentUser",
+      "status": "Working on it",
+      "dueDate": "",
+      "priority": "Medium",
+      "notes": "",
+      "timeline": "",
+      "location": "",
+      "lastUpdated": "2024-08-25 18:37",
+      "startTime": "2024-08-25 18:36",
+      "endTime": null,
+      "id": "a67be17c-d9b7-478d-82be-37276d62e1c2"
+    },
+    {
+      "name": "Task 3",
+      "owner": "CurrentUser",
+      "status": "Working on it",
+      "dueDate": "",
+      "priority": "Low",
+      "notes": "",
+      "timeline": "",
+      "location": "",
+      "lastUpdated": "2024-08-25 18:36",
+      "startTime": "2024-08-25 18:36",
+      "endTime": null,
+      "id": "a67d596f-3bc2-47c3-b247-6ec60c3f6d5b"
+    },
+    {
+      "name": "Task 4",
+      "owner": "CurrentUser",
+      "status": "Stuck",
+      "dueDate": "",
+      "priority": "Low",
+      "notes": "",
+      "timeline": "",
+      "location": "",
+      "lastUpdated": "2024-08-25 18:37",
+      "startTime": "2024-08-25 18:37",
+      "endTime": null,
+      "id": "452f08cd-ca12-4147-a960-7ea153db94a7"
+    },
+    {
+      "name": "Task 5",
+      "owner": "CurrentUser",
+      "status": "Done",
+      "dueDate": "",
+      "priority": "High",
+      "notes": "",
+      "timeline": "",
+      "location": "",
+      "lastUpdated": "2024-08-25 18:38",
+      "startTime": "2024-08-25 18:37",
+      "endTime": "2024-08-25 18:38",
+      "id": "b0ec4fd3-36aa-4785-952d-33711af7daba"
+    },
+    {
+      "name": "Task 6",
+      "owner": "CurrentUser",
+      "status": "Stuck",
+      "dueDate": "",
+      "priority": "Low",
+      "notes": "",
+      "timeline": "",
+      "location": "",
+      "lastUpdated": "2024-08-25 18:37",
+      "startTime": "2024-08-25 18:37",
+      "endTime": null,
+      "id": "646125dd-daaa-463f-85af-19cc186fe6a7"
+    }
+  ]
+}

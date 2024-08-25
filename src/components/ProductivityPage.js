@@ -19,7 +19,7 @@ const ProductivityPage = ({ tasks }) => {
       </div>
       <div className="work-hours-chart">
         <h3>Work Hours per Day</h3>
-        <WorkHoursChart workHoursPerDay={workHoursPerDay} />
+        <WorkHoursChart />
       </div>
       </div>
     </div>
