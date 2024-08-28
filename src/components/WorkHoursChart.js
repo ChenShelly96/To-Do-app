@@ -11,12 +11,12 @@ const WorkHoursChart = () => {
     const fetchWorkHours = async () => {
       try {
         const response = await axios.get('/api/tasks');
-        const tasks = response.data;
+        const tasks = response.data.tasksList;
         console.log(tasks);
         if (Array.isArray(tasks)) {
           // Filter tasks that have an endTime
           const tasksWithEndTime = tasks.filter(task => task.endTime !== null);
-          
+          console.log(tasksWithEndTime);
           // Calculate work hours per day and scale to 1-10
           const workHoursPerDay = calculateWorkHoursPerDay(tasksWithEndTime);
           const maxHours = Math.max(...Object.values(workHoursPerDay)); // Find the maximum work hours in any day
@@ -29,7 +29,7 @@ const WorkHoursChart = () => {
           setWorkHoursData(scaledWorkHours);
           setCategories(categoriesData);
         } else {
-          console.error('Expected tasks data to be an array, but got:', typeof tasks);
+          console.error('!!Expected tasks data to be an array, but got:', typeof tasks);
         }
       } catch (error) {
         console.error('Failed to fetch work hours:', error);

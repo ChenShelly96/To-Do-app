@@ -1,4 +1,4 @@
-import axios from 'axios'; // Import axios for making API requests
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import '../App.css';
 import '../styles/TaskTable.css';
@@ -17,16 +17,21 @@ const TaskTable = () => {
     const fetchTasks = async () => {
       try {
         const response = await axios.get('/api/tasks');
-        const tasks = response.data;
-        setTasks(tasks);
-        setTaskCompletionRate(calculateTaskCompletionRate(tasks));
+        const tasks = response.data.tasksList || response.data; 
+        console.log(tasks);
+        if (Array.isArray(tasks)) {
+          setTasks(tasks);
+          console.log(calculateTaskCompletionRate(tasks));
+          setTaskCompletionRate(calculateTaskCompletionRate(tasks));
+        } else {
+          console.error('Expected an array but got!!!:', typeof tasks);
+        }
       } catch (error) {
         console.error('Failed to fetch tasks:', error);
       }
     };
     fetchTasks();
   }, []);
-
 
   const formatDateTime = (date) => {
     const year = date.getFullYear();
@@ -36,6 +41,7 @@ const TaskTable = () => {
     const minutes = String(date.getMinutes()).padStart(2, '0');
     return `${year}-${month}-${day} ${hours}:${minutes}`;
   };
+
   // Add a new task
   const addTask = async () => {
     const now = formatDateTime(new Date());
@@ -56,14 +62,15 @@ const TaskTable = () => {
     try {
       const response = await axios.post('/api/tasks', newTask);
       const savedTask = response.data;
+      console.log(savedTask);
       setTasks([...tasks, savedTask]);
     } catch (error) {
       console.error('Failed to add task:', error);
     }
   };
 
-   // Update an existing task
-   const updateTask = async (id, updatedTask) => {
+  // Update an existing task
+  const updateTask = async (id, updatedTask) => {
     const now = formatDateTime(new Date()); // Current date and time as YYYY-MM-DD HH:MM
     updatedTask.lastUpdated = now;
 
@@ -129,7 +136,7 @@ const TaskTable = () => {
             </tr>
           </thead>
           <tbody>
-            {tasks.filter(task => task.status !== 'Done').map(task => (
+            {tasks.length > 0 && tasks.filter(task => task.status !== 'Done').map(task => (
               <TaskRow
                 key={task.id}
                 task={task}
@@ -166,7 +173,7 @@ const TaskTable = () => {
             </tr>
           </thead>
           <tbody>
-            {tasks.filter(task => task.status === 'Done').map(task => (
+            {tasks.length > 0 && tasks.filter(task => task.status === 'Done').map(task => (
               <TaskRow
                 key={task.id}
                 task={task}

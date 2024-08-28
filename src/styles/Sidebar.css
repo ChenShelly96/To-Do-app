@@ -1,36 +1,42 @@
-/* src/components/Sidebar.css */
+/* Sidebar styles */
 .sidebar {
     width: 250px;
     background-color: #f5f5f5;
     padding: 20px;
     height: 100vh;
     position: fixed;
-  }
-  
-  .sidebar-section {
+    display: flex; 
+    flex-direction: column; 
+}
+
+/* Each section in the sidebar with spacing below it */
+.sidebar-section {
     margin-bottom: 30px;
-  }
-  
-  .sidebar-section h3 {
+}
+
+/* Heading of each sidebar section */
+.sidebar-section h3 {
     font-size: 16px;
     margin-bottom: 10px;
-  }
-  
-  .sidebar-section span {
+}
+
+/* Additional margin for span elements within sections */
+.sidebar-section span {
     margin-left: 10px;
-  }
-  
-  .project-list h3 {
+}
+
+/* Project list section heading */
+.project-list h3 {
     font-size: 16px;
     margin-bottom: 10px;
-  }
-  
-  
-  
-  .active-link {
+}
+
+/* Styling for active link in the sidebar */
+.active-link {
     background-color: #3c264c;
-    color: white;
-    border-radius: 10px;
-    display: inline-block;
-    padding: 20px; 
-  }
+    color: white; 
+    border-radius: 10px; 
+    display: block; 
+    padding: 20px;
+    margin-top:5px;
+}

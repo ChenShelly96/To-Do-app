@@ -16,7 +16,13 @@ const Sidebar = () => {
           <FaHome /> <span>Home</span>
         </NavLink>
       
-      
+        {/* my day */}
+        <NavLink
+          to="/myday"
+          className={({ isActive }) => (isActive ? 'active-link' : '')}
+        >
+           <div>My Day</div>
+        </NavLink>
       
         <h3>My Work</h3>
         <NavLink

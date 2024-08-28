@@ -50,9 +50,9 @@ const TaskRow = ({ task, updateTask, deleteTask, onTaskSelect }) => {
         />
       </td>
       <td><span className="avatar">{editableTask.owner}</span></td>
-      <td className={`status ${editableTask.status.replace(/ /g, '-')}`}>
+      <td className={`status ${editableTask.status ? editableTask.status.replace(/ /g, '-') : ''}`}>
         <select
-          value={editableTask.status}
+          value={editableTask.status || 'Not Started'} // Default value in case status is undefined
           onChange={(e) => handleChange('status', e.target.value)}
         >
           <option value="Not Started">Not Started</option>
@@ -64,13 +64,13 @@ const TaskRow = ({ task, updateTask, deleteTask, onTaskSelect }) => {
       <td>
         <input
           type="date"
-          value={editableTask.dueDate}
+          value={editableTask.dueDate || ''} // Default empty value if dueDate is undefined
           onChange={(e) => handleChange('dueDate', e.target.value)}
         />
       </td>
-      <td className={`priority ${editableTask.priority}`}>
+      <td className={`priority ${editableTask.priority || 'Low'}`}>
         <select
-          value={editableTask.priority}
+          value={editableTask.priority || 'Low'} // Default value in case priority is undefined
           onChange={(e) => handleChange('priority', e.target.value)}
         >
           <option value="Low">Low</option>
@@ -81,18 +81,18 @@ const TaskRow = ({ task, updateTask, deleteTask, onTaskSelect }) => {
       <td>
         <input
           type="text"
-          value={editableTask.notes}
+          value={editableTask.notes || ''} // Default empty value if notes are undefined
           onChange={(e) => handleChange('notes', e.target.value)}
         />
       </td>
       <td>
         <input
           type="text"
-          value={editableTask.timeline}
+          value={editableTask.timeline || ''} // Default empty value if timeline is undefined
           onChange={(e) => handleChange('timeline', e.target.value)}
         />
       </td>
-      <td>{calculateLastUpdated(editableTask.lastUpdated)}</td>
+      <td>{editableTask.lastUpdated ? calculateLastUpdated(editableTask.lastUpdated) : 'N/A'}</td>
       <td>
         <input
           type="text"
