@@ -1,22 +1,22 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import API_BASE_URL from '../apiConfig';
 import '../App.css';
 import '../styles/TaskTable.css';
 import { calculateTaskCompletionRate } from '../utils/Functions';
 import ProgressBar from './ProgressBar';
 import TaskActionPopup from './TaskActionPopup';
 import TaskRow from './TaskRow';
-
 const TaskTable = () => {
   const [tasks, setTasks] = useState([]);
   const [selectedTask, setSelectedTask] = useState(null);
   const [taskCompletionRate, setTaskCompletionRate] = useState(0);
-
+ 
   // Load tasks from API when the component mounts
   useEffect(() => {
     const fetchTasks = async () => {
       try {
-        const response = await axios.get('/api/tasks');
+        const response = await axios.get(`${API_BASE_URL}/tasks`);
         const tasks = response.data.tasksList || response.data; 
         console.log(tasks);
         if (Array.isArray(tasks)) {
@@ -60,7 +60,7 @@ const TaskTable = () => {
     };
 
     try {
-      const response = await axios.post('/api/tasks', newTask);
+      const response = await axios.post(`${API_BASE_URL}/tasks`, newTask);
       const savedTask = response.data;
       console.log(savedTask);
       setTasks([...tasks, savedTask]);
@@ -79,7 +79,7 @@ const TaskTable = () => {
     }
 
     try {
-      const response = await axios.put(`/api/tasks/${id}`, updatedTask);
+      const response = await axios.put(`${API_BASE_URL}/tasks/${id}`, updatedTask);
       const savedTask = response.data;
       const updatedTasks = tasks.map(task =>
         task.id === id ? savedTask : task
