@@ -44,19 +44,64 @@
     font-size: 1rem;
     margin-top: 10px;
   }
+  .task-input-box {
+    display: flex;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.1); /* Transparent box like in the screenshot */
+    padding: 10px;
+    border-radius: 5px;
+  }
   
-  .add-task-button {
-    background-color: #007bff;
+  .task-input {
+    flex-grow: 1;
+    border: none;
+    background: transparent;
+    padding: 10px;
+    font-size: 16px;
+    outline: none;
+    color: white;
+  }
+  .my-day-add-task{
+    max-width: 60px;
+  }
+  .task-submit-button {
+    background-color: #4CAF50;
     color: white;
     border: none;
-    padding: 10px 20px;
-    border-radius: 50px;
-    font-size: 1rem;
+    padding: 10px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    font-size: 16px;
+    margin-left: 10px;
+    border-radius: 5px;
+  }
+  .add-task-button {
+    background-color: rgba(0, 0, 0, 0.1);
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
   }
   
   .add-task-button:hover {
-    background-color: #0056b3;
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+
+  .task-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .task-list li {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+  }
+  
+  .task-list input[type="checkbox"] {
+    margin-right: 10px;
   }
   
