@@ -1,0 +1,23 @@
+{
+  "tasks": [
+    {
+      "title": "Cooking",
+      "date": "2024-09-04T12:00:00.000Z",
+      "important": true,
+      "location": "Home",
+      "notes": "Prepare lunch",
+      "status": "pending"
+    },
+ 
+   
+    {
+      "title": "homework",
+      "date": "2024-09-18T18:45:25.000Z",
+      "important": false,
+      "notes": "",
+      "location": "",
+      "status": "pending"
+    }
+  ],
+  "completedTasks": []
+}

@@ -6,6 +6,7 @@ require('dotenv').config();
 
 const app = express();
 const tasksFilePath = path.join(__dirname, 'tasks.json');
+const myDayFilePath = path.join(__dirname, 'myday.json');
 
 // Middleware
 app.use((req, res, next) => {
@@ -20,7 +21,7 @@ app.use((req, res, next) => {
 app.use(cors());
 app.use(express.json());
 
-// Helper functions to read and write the JSON file
+// Helper functions to read and write the JSON file for tasks
 function readTasksFromFile() {
     try {
         const data = fs.readFileSync(tasksFilePath, 'utf8');
@@ -40,7 +41,35 @@ function writeTasksToFile(tasks) {
     }
 }
 
-// Routes
+// Helper functions to read and write the JSON file for MyDay
+function readMyDayFromFile() {
+    try {
+        // If the file does not exist, create an empty file
+        if (!fs.existsSync(myDayFilePath)) {
+            const initialData = { tasks: [], completedTasks: [] };
+            fs.writeFileSync(myDayFilePath, JSON.stringify(initialData, null, 2), 'utf8');
+            return initialData;
+        }
+
+        const data = fs.readFileSync(myDayFilePath, 'utf8');
+        const myDay = JSON.parse(data);
+        console.log(data);
+        return myDay.tasks ? myDay : { tasks: [], completedTasks: [] };
+    } catch (error) {
+        console.error("Error reading MyDay file:", error);
+        return { tasks: [], completedTasks: [] };
+    }
+}
+
+function writeMyDayToFile(myDay) {
+    try {
+        fs.writeFileSync(myDayFilePath, JSON.stringify(myDay, null, 2), 'utf8');
+    } catch (error) {
+        console.error('Error writing MyDay to file:', error);
+    }
+}
+
+// Routes for tasks
 app.get(`/api/tasks`, (req, res) => {
     const tasks = readTasksFromFile();
     res.json(tasks);
@@ -80,10 +109,26 @@ app.delete('/api/tasks/:id', (req, res) => {
     res.status(204).end();
 });
 
+// Routes for MyDay
+app.get('/api/myday', (req, res) => {
+    const myDay = readMyDayFromFile();
+    res.json(myDay);
+});
+
+app.post('/api/myday', (req, res) => {
+    const myDay = readMyDayFromFile();
+    const { tasks, completedTasks } = req.body;
+
+    // Update tasks and completedTasks in the MyDay file
+    myDay.tasks = tasks || [];
+    myDay.completedTasks = completedTasks || [];
+    
+    writeMyDayToFile(myDay);
+
+    res.status(201).json({ message: 'MyDay updated successfully' });
+});
+
 // Start the server
 const PORT = process.env.PORT || 5000;
 const API_BASE_URL = process.env.API_BASE_URL || 'http://localhost:5000';  
 app.listen(PORT, () => console.log(`Server running on port ${PORT} and API URL is ${API_BASE_URL}`));
-
-
-//app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
