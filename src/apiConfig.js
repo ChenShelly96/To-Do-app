@@ -4,7 +4,7 @@ let API_BASE_URL;
 
 if (window.location.hostname === 'localhost') {
 
-  API_BASE_URL = 'http://localhost:5000/api';
+  API_BASE_URL = 'http://localhost:5000';
 } else {
 
   API_BASE_URL = 'https://main--chen-to-do-app.netlify.app';

@@ -3,7 +3,7 @@ const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
 require('dotenv').config();
-const apiBaseUrl = process.env.API_BASE_URL || 'http://localhost:5000';
+
 const app = express();
 const tasksFilePath = path.join(__dirname, 'tasks.json');
 
@@ -41,7 +41,7 @@ function writeTasksToFile(tasks) {
 }
 
 // Routes
-app.get(`${apiBaseUrl}/api/tasks`, (req, res) => {
+app.get(`/api/tasks`, (req, res) => {
     const tasks = readTasksFromFile();
     res.json(tasks);
 });
