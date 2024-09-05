@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
+require('dotenv').config();
 
 const app = express();
 const tasksFilePath = path.join(__dirname, 'tasks.json');
@@ -72,4 +73,8 @@ app.delete('/api/tasks/:id', (req, res) => {
 
 // Start the server
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+const API_BASE_URL = process.env.API_BASE_URL || 'http://localhost:5000';  
+app.listen(PORT, () => console.log(`Server running on port ${PORT} and API URL is ${API_BASE_URL}`));
+
+
+//app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
