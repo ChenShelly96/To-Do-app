@@ -11,7 +11,34 @@ const TaskTable = () => {
   const [selectedTask, setSelectedTask] = useState(null);
   const [taskCompletionRate, setTaskCompletionRate] = useState(0);
 
-  // Load tasks from API when the component mounts
+
+
+  /*
+  const fs = require('fs');
+const path = require('path');
+
+exports.handler = async function(event, context) {
+  const tasksFilePath = path.join(__dirname,  'tasks.json');
+  
+  try {
+    const data = fs.readFileSync(tasksFilePath, 'utf8');
+    const tasks = JSON.parse(data);
+    return {
+      statusCode: 200,
+      body: JSON.stringify({ tasksList: tasks.tasksList || tasks }),
+    };
+  } catch (error) {
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: 'Failed to read tasks' }),
+    };
+  }
+};
+
+  
+  
+  
+
   useEffect(() => {
     const fetchTasks = async () => {
       try {
@@ -24,6 +51,27 @@ const TaskTable = () => {
           setTaskCompletionRate(calculateTaskCompletionRate(tasks));
         } else {
           console.error('Expected an array but got!!!:', typeof tasks);
+        }
+      } catch (error) {
+        console.error('Failed to fetch tasks:', error);
+      }
+    };
+    fetchTasks();
+  }, []);**/
+
+  useEffect(() => {
+    const fetchTasks = async () => {
+      try {
+        const response = await fetch('/data/tasks.json');  // Load JSON from public/data
+        const data = await response.json();
+        const tasks = data.tasksList || data; 
+        console.log(tasks);
+        if (Array.isArray(tasks)) {
+          setTasks(tasks);
+          console.log(calculateTaskCompletionRate(tasks));
+          setTaskCompletionRate(calculateTaskCompletionRate(tasks));
+        } else {
+          console.error('Expected an array but got:', typeof tasks);
         }
       } catch (error) {
         console.error('Failed to fetch tasks:', error);
