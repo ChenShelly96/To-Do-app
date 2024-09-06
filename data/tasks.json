@@ -1,0 +1,102 @@
+{
+  "tasksList": [
+    {
+      "id": 1,
+      "name": "Task 1",
+      "owner": "CurrentUser",
+      "status": "Done",
+      "dueDate": "",
+      "priority": "Low",
+      "notes": "",
+      "timeline": "",
+      "location": "",
+      "lastUpdated": "2024-08-28 15:13",
+      "startTime": "2024-08-28 15:13",
+      "endTime": "2024-08-28 15:13"
+    },
+    {
+      "id": 2,
+      "name": "Task 2",
+      "owner": "CurrentUser",
+      "status": "Done",
+      "dueDate": "",
+      "priority": "Medium",
+      "notes": "",
+      "timeline": "",
+      "location": "",
+      "lastUpdated": "2024-08-28 15:13",
+      "startTime": "2024-08-28 15:13",
+      "endTime": "2024-08-28 15:13"
+    },
+    {
+      "id": 3,
+      "name": "Task 3",
+      "owner": "CurrentUser",
+      "status": "Stuck",
+      "dueDate": "",
+      "priority": "Low",
+      "notes": "",
+      "timeline": "",
+      "location": "",
+      "lastUpdated": "2024-08-28 15:13",
+      "startTime": "2024-08-28 15:13",
+      "endTime": null
+    },
+    {
+      "id": 4,
+      "name": "Task 4",
+      "owner": "CurrentUser",
+      "status": "Working on it",
+      "dueDate": "",
+      "priority": "Medium",
+      "notes": "",
+      "timeline": "",
+      "location": "",
+      "lastUpdated": "2024-09-05 20:48",
+      "startTime": "2024-09-05 17:55",
+      "endTime": null
+    },
+    {
+      "id": 5,
+      "name": "Task 1",
+      "owner": "CurrentUser",
+      "status": "Stuck",
+      "dueDate": "",
+      "priority": "Low",
+      "notes": "",
+      "timeline": "",
+      "location": "",
+      "lastUpdated": "2024-09-05 20:48",
+      "startTime": "2024-09-05 19:13",
+      "endTime": null
+    },
+    {
+      "id": 6,
+      "name": "Task 1",
+      "owner": "CurrentUser",
+      "status": "Working on it",
+      "dueDate": "",
+      "priority": "Low",
+      "notes": "",
+      "timeline": "",
+      "location": "",
+      "lastUpdated": "2024-09-05 20:48",
+      "startTime": "2024-09-05 19:18",
+      "endTime": null
+    },
+    {
+      "id": 7,
+      "name": "Task 1",
+      "owner": "CurrentUser",
+      "status": "Working on it",
+      "dueDate": "",
+      "priority": "High",
+      "notes": "",
+      "timeline": "",
+      "location": "",
+      "lastUpdated": "2024-09-05 20:49",
+      "startTime": "2024-09-05 19:25",
+      "endTime": null
+    }
+  ]
+}

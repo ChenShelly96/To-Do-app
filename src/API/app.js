@@ -5,8 +5,8 @@ const path = require('path');
 require('dotenv').config();
 
 const app = express();
-const tasksFilePath = path.join(__dirname, 'tasks.json');
-const myDayFilePath = path.join(__dirname, 'myday.json');
+const tasksFilePath = path.join(__dirname, 'data', 'tasks.json');
+const myDayFilePath = path.join(__dirname, 'data', 'myday.json');
 
 // Middleware
 app.use((req, res, next) => {
