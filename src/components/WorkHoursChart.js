@@ -1,35 +1,34 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Chart from 'react-apexcharts';
 import '../styles/ProductivityPage.css';
 import { formatDateTime } from '../utils/Functions';
+
 const WorkHoursChart = () => {
   const [workHoursData, setWorkHoursData] = useState([]);
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    const fetchWorkHours = async () => {
+    const fetchWorkHours = () => {
       try {
-        const response = await axios.get('/api/tasks');
-        const tasks = response.data.tasksList;
-        console.log(tasks);
-        if (Array.isArray(tasks)) {
+        // Load tasks from localStorage
+        const savedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
+        console.log(savedTasks);
+        if (Array.isArray(savedTasks)) {
           // Filter tasks that have an endTime
-          const tasksWithEndTime = tasks.filter(task => task.endTime !== null);
+          const tasksWithEndTime = savedTasks.filter(task => task.endTime !== null);
           console.log(tasksWithEndTime);
+
           // Calculate work hours per day and scale to 1-10
           const workHoursPerDay = calculateWorkHoursPerDay(tasksWithEndTime);
           const maxHours = Math.max(...Object.values(workHoursPerDay)); // Find the maximum work hours in any day
           const scaledWorkHours = Object.values(workHoursPerDay).map(hours => (hours / maxHours) * 10); // Scale to 1-10
 
-         
           const categoriesData = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-
 
           setWorkHoursData(scaledWorkHours);
           setCategories(categoriesData);
         } else {
-          console.error('!!Expected tasks data to be an array, but got:', typeof tasks);
+          console.error('Expected tasks data to be an array, but got:', typeof savedTasks);
         }
       } catch (error) {
         console.error('Failed to fetch work hours:', error);
@@ -49,14 +48,12 @@ const WorkHoursChart = () => {
      
         if (hoursWorked < 1) {
             hoursWorked = 1;
-          }
+        }
         const dayOfWeek = startTime.getDay();
         hoursPerDay[dayOfWeek] += hoursWorked;
       }
-     
     });
 
-    
     return hoursPerDay;
   };
 
@@ -84,8 +81,8 @@ const WorkHoursChart = () => {
           fontSize: '20px',
         },
         formatter: function (val) {
-            return Math.round(val); 
-          }
+          return Math.round(val); 
+        }
       },
       min: 0,
       max: 10, 

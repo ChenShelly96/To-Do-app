@@ -1,10 +1,10 @@
-import axios from 'axios'; // ייבוא axios
 import React, { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import '../App.css';
 import '../styles/MyDay.css';
 import Sidebar from './Sidebar';
+
 const MyDay = () => {
   const [isInputVisible, setIsInputVisible] = useState(true); // State to track if input is visible
   const [task, setTask] = useState(''); // State to store the user's input
@@ -16,33 +16,19 @@ const MyDay = () => {
   const [sidePanelVisible, setSidePanelVisible] = useState(false); // State to show/hide side panel
 
   useEffect(() => {
-    // Fetch existing tasks from the API on load
-    fetchTasksFromAPI();
+    // Load tasks from localStorage on component mount
+    const savedTasks = JSON.parse(localStorage.getItem('myDayTasks')) || [];
+    const savedCompletedTasks = JSON.parse(localStorage.getItem('myDayCompletedTasks')) || [];
+    setTasks(savedTasks);
+    setCompletedTasks(savedCompletedTasks);
   }, []);
 
-  // Function to fetch tasks from API using axios
-  const fetchTasksFromAPI = async () => {
-    try {
-      const response = await axios.get('/api/myday'); 
-      const data = response.data;
-      setTasks(data.tasks || []);
-      setCompletedTasks(data.completedTasks || []);
-    } catch (error) {
-      console.error('Error fetching tasks:', error);
-    }
-  };
-
-  // Function to save tasks to API using axios
-  const saveTasksToAPI = async (tasksToSave, completedTasksToSave) => {
-    try {
-      const response = await axios.post('/api/myday', {
-        tasks: tasksToSave,
-        completedTasks: completedTasksToSave
-      }); 
-      console.log('Tasks saved successfully',response);
-    } catch (error) {
-      console.error('Error saving tasks:', error);
-    }
+  // Function to save tasks to localStorage
+  const saveTasksToLocalStorage = (tasksToSave, completedTasksToSave) => {
+    localStorage.setItem('myDayTasks', JSON.stringify(tasksToSave));
+    localStorage.setItem('myDayCompletedTasks', JSON.stringify(completedTasksToSave));
+    setTasks(tasksToSave);
+    setCompletedTasks(completedTasksToSave);
   };
 
   // Function to handle task submission
@@ -57,11 +43,10 @@ const MyDay = () => {
         status: 'pending'
       };
       const updatedTasks = [...tasks, newTask];
-      setTasks(updatedTasks);
       setIsInputVisible(false);
       setTask('');
-      // Save updated tasks to API
-      saveTasksToAPI(updatedTasks, completedTasks);
+      // Save updated tasks to localStorage
+      saveTasksToLocalStorage(updatedTasks, completedTasks);
     }
   };
 
@@ -81,20 +66,15 @@ const MyDay = () => {
     const updatedTask = { ...selectedTask, [field]: value };
     setSelectedTask(updatedTask);
     const updatedTasks = tasks.map((t) => (t === selectedTask ? updatedTask : t));
-    setTasks(updatedTasks);
-    // Save updated tasks to API
-    saveTasksToAPI(updatedTasks, completedTasks);
+    saveTasksToLocalStorage(updatedTasks, completedTasks); // Save updated tasks to localStorage
   };
 
   // Function to mark task as completed
   const markTaskAsCompleted = (task) => {
     const updatedTasks = tasks.filter((t) => t !== task);
     const updatedCompletedTasks = [...completedTasks, { ...task, status: 'done' }];
-    setTasks(updatedTasks);
-    setCompletedTasks(updatedCompletedTasks);
+    saveTasksToLocalStorage(updatedTasks, updatedCompletedTasks); // Save updated tasks and completed tasks to localStorage
     setSidePanelVisible(false);
-    // Save updated tasks to API
-    saveTasksToAPI(updatedTasks, updatedCompletedTasks);
   };
 
    // Function to handle Add Task button click to show the input
@@ -104,7 +84,7 @@ const MyDay = () => {
 
   return (
     <div className="my-day-container">
-             <Sidebar className="sidebar" />
+      <Sidebar className="sidebar" />
       <header className="my-day-header">
         <h1>My Day</h1>
         <p>{new Date().toLocaleDateString('en-US', { weekday: 'long', day: 'numeric', month: 'long' })}</p>
@@ -158,52 +138,51 @@ const MyDay = () => {
           ))}
         </ul>
 
-       
         {sidePanelVisible && selectedTask && (
-            <div className="side-panel">
-                <h3>{selectedTask.title}</h3>
-                <p>Added to My Day</p>
-                <div className="side-panel-controls">
-                <label>Important:</label>
-                <input
-                    type="checkbox"
-                    checked={selectedTask.important}
-                    onChange={(e) => handleTaskUpdate('important', e.target.checked)}
-                />
-                <label>Due Date:</label>
-                <DatePicker
-                    selected={new Date(selectedTask.date)}
-                    onChange={(date) => handleTaskUpdate('date', date)}
-                />
-                <label>Location:</label>
-                <input
-                    type="text"
-                    value={selectedTask.location}
-                    onChange={(e) => handleTaskUpdate('location', e.target.value)}
-                />
-                <label>Notes:</label>
-                <textarea
-                    value={selectedTask.notes}
-                    onChange={(e) => handleTaskUpdate('notes', e.target.value)}
-                />
-                <button onClick={() => markTaskAsCompleted(selectedTask)}>Mark as Completed</button>
+          <div className="side-panel">
+            <h3>{selectedTask.title}</h3>
+            <p>Added to My Day</p>
+            <div className="side-panel-controls">
+              <label>Important:</label>
+              <input
+                type="checkbox"
+                checked={selectedTask.important}
+                onChange={(e) => handleTaskUpdate('important', e.target.checked)}
+              />
+              <label>Due Date:</label>
+              <DatePicker
+                selected={new Date(selectedTask.date)}
+                onChange={(date) => handleTaskUpdate('date', date)}
+              />
+              <label>Location:</label>
+              <input
+                type="text"
+                value={selectedTask.location}
+                onChange={(e) => handleTaskUpdate('location', e.target.value)}
+              />
+              <label>Notes:</label>
+              <textarea
+                value={selectedTask.notes}
+                onChange={(e) => handleTaskUpdate('notes', e.target.value)}
+              />
+              <button onClick={() => markTaskAsCompleted(selectedTask)}>Mark as Completed</button>
             </div>
-        </div>
+          </div>
         )}
+      </div>
+      <div className='completed-box'>
+        <h3>Completed</h3>
+        <ul className="completed-task-list">
+          {completedTasks.map((task, index) => (
+            <li key={index} className="task-item">
+              <div className="task-box">
+                <p>{task.title}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
-    <div className='completed-box'>
-                <h3>Completed</h3>
-                <ul className="completed-task-list">
-                {completedTasks.map((task, index) => (
-                    <li key={index} className="task-item">
-                    <div className="task-box">
-                        <p>{task.title}</p>
-                    </div>
-                    </li>
-                ))}
-                </ul>
-        </div>
-</div>
   );
 };
 

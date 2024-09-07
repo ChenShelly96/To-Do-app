@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import '../App.css';
 import '../styles/TaskTable.css';
@@ -6,78 +5,31 @@ import { calculateTaskCompletionRate } from '../utils/Functions';
 import ProgressBar from './ProgressBar';
 import TaskActionPopup from './TaskActionPopup';
 import TaskRow from './TaskRow';
+
 const TaskTable = () => {
   const [tasks, setTasks] = useState([]);
   const [selectedTask, setSelectedTask] = useState(null);
   const [taskCompletionRate, setTaskCompletionRate] = useState(0);
 
 
-
-  /*
-  const fs = require('fs');
-const path = require('path');
-
-exports.handler = async function(event, context) {
-  const tasksFilePath = path.join(__dirname,  'tasks.json');
-  
-  try {
-    const data = fs.readFileSync(tasksFilePath, 'utf8');
-    const tasks = JSON.parse(data);
-    return {
-      statusCode: 200,
-      body: JSON.stringify({ tasksList: tasks.tasksList || tasks }),
-    };
-  } catch (error) {
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ error: 'Failed to read tasks' }),
-    };
-  }
-};
-
-  
-  
-  
-
+  // Load tasks from localStorage when the component mounts
   useEffect(() => {
-    const fetchTasks = async () => {
+    const fetchTasksFromLocalStorage = () => {
       try {
-        const response = await axios.get('/api/tasks');
-        const tasks = response.data.tasksList || response.data; 
-        console.log(tasks);
-        if (Array.isArray(tasks)) {
-          setTasks(tasks);
-          console.log(calculateTaskCompletionRate(tasks));
-          setTaskCompletionRate(calculateTaskCompletionRate(tasks));
+        // Load tasks from localStorage
+        const savedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
+        if (Array.isArray(savedTasks)) {
+          setTasks(savedTasks);
+          console.log(calculateTaskCompletionRate(savedTasks));
+          setTaskCompletionRate(calculateTaskCompletionRate(savedTasks));
         } else {
-          console.error('Expected an array but got!!!:', typeof tasks);
+          console.error('Expected an array but got:', typeof savedTasks);
         }
       } catch (error) {
-        console.error('Failed to fetch tasks:', error);
+        console.error('Failed to fetch tasks from localStorage:', error);
       }
     };
-    fetchTasks();
-  }, []);**/
-
-  useEffect(() => {
-    const fetchTasks = async () => {
-      try {
-        const response = await fetch('/data/tasks.json');  // Load JSON from public/data
-        const data = await response.json();
-        const tasks = data.tasksList || data; 
-        console.log(tasks);
-        if (Array.isArray(tasks)) {
-          setTasks(tasks);
-          console.log(calculateTaskCompletionRate(tasks));
-          setTaskCompletionRate(calculateTaskCompletionRate(tasks));
-        } else {
-          console.error('Expected an array but got:', typeof tasks);
-        }
-      } catch (error) {
-        console.error('Failed to fetch tasks:', error);
-      }
-    };
-    fetchTasks();
+    fetchTasksFromLocalStorage();
   }, []);
 
   const formatDateTime = (date) => {
@@ -89,10 +41,18 @@ exports.handler = async function(event, context) {
     return `${year}-${month}-${day} ${hours}:${minutes}`;
   };
 
+  // Save updated tasks to localStorage
+  const saveTasksToLocalStorage = (updatedTasks) => {
+    localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+    setTasks(updatedTasks);
+    setTaskCompletionRate(calculateTaskCompletionRate(updatedTasks));
+  };
+
   // Add a new task
-  const addTask = async () => {
+  const addTask = () => {
     const now = formatDateTime(new Date());
     const newTask = {
+      id: tasks.length + 1,
       name: `Task ${tasks.length + 1}`,
       owner: 'CurrentUser',  // Replace with the current user's name
       status: 'Not Started',
@@ -106,18 +66,12 @@ exports.handler = async function(event, context) {
       endTime: null,
     };
 
-    try {
-      const response = await axios.post('/api/tasks', newTask);
-      const savedTask = response.data;
-      console.log(savedTask);
-      setTasks([...tasks, savedTask]);
-    } catch (error) {
-      console.error('Failed to add task:', error);
-    }
+    const updatedTasks = [...tasks, newTask];
+    saveTasksToLocalStorage(updatedTasks);
   };
 
   // Update an existing task
-  const updateTask = async (id, updatedTask) => {
+  const updateTask = (id, updatedTask) => {
     const now = formatDateTime(new Date()); // Current date and time as YYYY-MM-DD HH:MM
     updatedTask.lastUpdated = now;
 
@@ -125,28 +79,17 @@ exports.handler = async function(event, context) {
       updatedTask.endTime = now; 
     }
 
-    try {
-      const response = await axios.put(`/api/tasks/${id}`, updatedTask);
-      const savedTask = response.data;
-      const updatedTasks = tasks.map(task =>
-        task.id === id ? savedTask : task
-      );
-      setTasks(updatedTasks);
-    } catch (error) {
-      console.error('Failed to update task:', error);
-    }
+    const updatedTasks = tasks.map(task =>
+      task.id === id ? updatedTask : task
+    );
+    saveTasksToLocalStorage(updatedTasks);
   };
 
   // Delete a task
-  const deleteTask = async (id) => {
-    try {
-      await axios.delete(`/api/tasks/${id}`);
-      const updatedTasks = tasks.filter(task => task.id !== id);
-      setTasks(updatedTasks);
-      setSelectedTask(null);
-    } catch (error) {
-      console.error('Failed to delete task:', error);
-    }
+  const deleteTask = (id) => {
+    const updatedTasks = tasks.filter(task => task.id !== id);
+    saveTasksToLocalStorage(updatedTasks);
+    setSelectedTask(null);
   };
 
   const handleTaskSelect = (task) => {

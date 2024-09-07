@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { useState } from 'react';
 import '../App.css';
 import '../styles/TaskRow.css';
@@ -9,18 +8,22 @@ const TaskRow = ({ task, updateTask, deleteTask, onTaskSelect }) => {
   const [location, setLocation] = useState(task.location || "");
   const [isChecked, setIsChecked] = useState(false);
 
-  // Function to handle input change for any field and send API update request
-  const handleChange = async (field, value) => {
+  // Function to handle input change for any field and update task in localStorage
+  const handleChange = (field, value) => {
     const now = new Date().toISOString(); // Get current date and time
     const updatedTask = { ...editableTask, [field]: value, lastUpdated: now };
     setEditableTask(updatedTask);
 
-    try {
-      await axios.put(`/api/tasks/${editableTask.id}`, updatedTask);
-      updateTask(editableTask.id, updatedTask); // Update the task in the parent component
-    } catch (error) {
-      console.error('Failed to update task:', error);
-    }
+    // Update task in parent component and localStorage
+    updateTask(editableTask.id, updatedTask);
+    updateTaskInLocalStorage(editableTask.id, updatedTask);
+  };
+
+  // Update the task in localStorage
+  const updateTaskInLocalStorage = (id, updatedTask) => {
+    const savedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    const updatedTasks = savedTasks.map(task => task.id === id ? updatedTask : task);
+    localStorage.setItem('tasks', JSON.stringify(updatedTasks));  // Save updated tasks back to localStorage
   };
 
   const handleLocationChange = (newCity) => {
