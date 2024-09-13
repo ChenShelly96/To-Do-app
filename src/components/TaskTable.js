@@ -114,15 +114,15 @@ const TaskTable = () => {
           <thead>
             <tr>
               <th></th>
-              <th>Task</th>
-              <th>Owner</th>
-              <th>Status</th>
-              <th>Due date</th>
-              <th>Priority</th>
-              <th>Notes</th>
-              <th>Timeline</th>
-              <th>Last updated</th>
-              <th>Location</th>
+              <th className='task-cell'>Task</th>
+              <th className='owner-cell'>Owner</th>
+              <th className='status-cell'>Status</th>
+              <th className='duedate-cell'>Due date</th>
+              <th className='priority-cell'>Priority</th>
+              <th className='notes-cell'>Notes</th>
+              <th className='timeline-cell'>Timeline</th>
+              <th className='lastupdate-cell'>Last updated</th>
+              <th className='location-cell'>Location</th>
             </tr>
           </thead>
           <tbody>
@@ -151,15 +151,15 @@ const TaskTable = () => {
           <thead>
             <tr>
               <th></th>
-              <th>Task</th>
-              <th>Owner</th>
-              <th>Status</th>
-              <th>Due date</th>
-              <th>Priority</th>
-              <th>Notes</th>
-              <th>Timeline</th>
-              <th>Last updated</th>
-              <th>Location</th>
+              <th className='task-cell'>Task</th>
+              <th className='owner-cell'>Owner</th>
+              <th className='status-cell'>Status</th>
+              <th className='duedate-cell'>Due date</th>
+              <th className='priority-cell'>Priority</th>
+              <th className='notes-cell'>Notes</th>
+              <th className='timeline-cell'>Timeline</th>
+              <th className='lastupdate-cell'>Last updated</th>
+              <th className='location-cell'>Location</th>
             </tr>
           </thead>
           <tbody>

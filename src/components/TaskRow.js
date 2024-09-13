@@ -81,14 +81,14 @@ const TaskRow = ({ task, updateTask, deleteTask, onTaskSelect }) => {
           <option value="High">High</option>
         </select>
       </td>
-      <td>
+      <td >
         <input
           type="text"
           value={editableTask.notes || ''} // Default empty value if notes are undefined
           onChange={(e) => handleChange('notes', e.target.value)}
         />
       </td>
-      <td>
+      <td  >
         <input
           type="text"
           value={editableTask.timeline || ''} // Default empty value if timeline is undefined
@@ -96,7 +96,7 @@ const TaskRow = ({ task, updateTask, deleteTask, onTaskSelect }) => {
         />
       </td>
       <td>{editableTask.lastUpdated ? calculateLastUpdated(editableTask.lastUpdated) : 'N/A'}</td>
-      <td>
+      <td className='location-cell'>
         <input
           type="text"
           placeholder="Enter Location"

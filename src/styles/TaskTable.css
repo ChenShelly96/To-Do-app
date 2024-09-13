@@ -15,15 +15,42 @@
   
   .task-table th, .task-table td {
     border: 1px solid #ddd;
-    padding: 10px;
+    padding: 20px;
     text-align: left;
     color:#ddd;
   }
   
   .task-table th {
     background-color: #f5f5f5;
+   
   }
-  
+  .task-cell{
+    width: 10px;
+}
+  .owner-cell{
+    width: 100px;
+}
+  .status-cell{
+    width: 200px;
+}
+  .duedate-cell{
+    width: 200px;
+}
+  .priority-cell{
+    width: 200px;
+}
+  .notes-cell{
+    width: 100px;
+}
+  .timeline-cell{
+    width: 100px;
+}
+  .lastupdate-cell{
+    width: 200px;
+}
+  .location-cell{
+    width: 200px;
+}
   button {
     margin-top: 10px;
     padding: 5px 10px;

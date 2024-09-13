@@ -52,7 +52,8 @@ select {
 .priority.Low {
     background-color: #86B6FB; /* Light purple/blue color */
     color: white;
-    padding: 5px 10px;
+    width:200px;
+    padding: 10px 10px;
     border-radius: 5px;
     display: inline-block;
 }
@@ -60,7 +61,8 @@ select {
 .priority.Medium {
     background-color: #5559DF; /* Medium purple color */
     color: white;
-    padding: 5px 10px;
+    width:200px;
+    padding: 10px 10px;
     border-radius: 5px;
     display: inline-block;
 }
@@ -68,7 +70,8 @@ select {
 .priority.High {
     background-color: #401694; /* Light pinkish-purple color */
     color: white;
-    padding: 5px 10px;
+    width:200px;
+    padding: 10px 10px;
     border-radius: 5px;
     display: inline-block;
 }
@@ -79,6 +82,13 @@ input[type="checkbox"] {
     height: 18px;
     margin: 2px;
     vertical-align: middle;
+}
+
+.notes-cell{
+    width: 300px;
+}
+.timeline-cell{
+    width: 300px;
 }
 
 /* Table cell styling */

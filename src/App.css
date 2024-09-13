@@ -109,6 +109,7 @@ color:#74ABFC;
   
   .task-table th {
     background-color: #f5f5f5;
+ 
   }
   
   .task-section.to-do th {
@@ -124,7 +125,8 @@ color:#74ABFC;
   .status.Working-on-it {
     background-color: #ffb400;
     color: white;
-    padding: 5px 10px;
+    width: 200px;
+    padding: 10px 10px;
     border-radius: 5px;
     display: inline-block;
   }
@@ -132,7 +134,8 @@ color:#74ABFC;
   .status.Done {
     background-color: #2ecc71;
     color: white;
-    padding: 5px 10px;
+    width: 200px;
+    padding: 10px 10px;
     border-radius: 5px;
     display: inline-block;
   }
@@ -140,34 +143,12 @@ color:#74ABFC;
   .status.Stuck {
     background-color: #e74c3c;
     color: white;
-    padding: 5px 10px;
+    width: 200px;
+    padding: 10px 10px;
     border-radius: 5px;
     display: inline-block;
   }
-  
-  /*.priority.Low {
-    background-color: #3498db;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
-    display: inline-block;
-  }
-  
-  .priority.Medium {
-    background-color: #f39c12;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
-    display: inline-block;
-  }
-  
-  .priority.High {
-    background-color: #9b59b6;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
-    display: inline-block;
-  }*/
+
   
   .task-table button {
     margin-top: 10px;
@@ -257,5 +238,20 @@ color:#74ABFC;
     button {
         padding: 10px 15px;
         font-size: 1rem;
+    }
+}
+
+@media (max-width: 375px) {
+    .sidebar {
+        display: none; 
+    }
+
+    .project {
+        margin: 0;
+        padding: 10px;
+    }
+
+    .task-table th, .task-table td {
+        font-size: 12px;
     }
 }
