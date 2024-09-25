@@ -4,7 +4,8 @@ import '../styles/ProductivityPage.css';
 //import '../styles/TaskTable.css';
 const WorkHoursChart = () => {
   const [workHoursData, setWorkHoursData] = useState([]);
-  const [categories, setCategories] = useState(['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']);
+  //const [categories, setCategories] = useState(['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']);
+  const categories = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
   useEffect(() => {
     const fetchWorkHours = () => {
