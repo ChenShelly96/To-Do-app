@@ -109,10 +109,15 @@
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(130, 228, 156, 0.1);
     width: 300px; /* Full width */
-    max-width: 600px;
+    max-width: 900px;
     color: #f0eeee;
     text-align: left;
-    margin: 10px 0;
+   
+    margin-top: 50px;
+    margin-left: -500px;
+  
+    
+
 }
   
   .task-list input[type="checkbox"] {

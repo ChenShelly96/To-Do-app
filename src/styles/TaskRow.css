@@ -40,7 +40,7 @@ select {
     height: 100%;
     border: none;
     background-color: transparent; /* Make background transparent */
-    font-size: inherit;
+    font-size: 20px;
     color: inherit;
     padding: 5px 10px;
     margin: 0;
@@ -53,7 +53,8 @@ select {
     background-color: #86B6FB; /* Light purple/blue color */
     color: white;
     width:200px;
-    padding: 10px 10px;
+    padding: 40px 40px;
+    margin:10px;
     border-radius: 5px;
     display: inline-block;
 }
@@ -62,7 +63,8 @@ select {
     background-color: #5559DF; /* Medium purple color */
     color: white;
     width:200px;
-    padding: 10px 10px;
+    padding: 40px 40px;
+    margin:10px;
     border-radius: 5px;
     display: inline-block;
 }
@@ -71,7 +73,8 @@ select {
     background-color: #401694; /* Light pinkish-purple color */
     color: white;
     width:200px;
-    padding: 10px 10px;
+    padding: 40px 40px;
+    margin:10px;
     border-radius: 5px;
     display: inline-block;
 }
@@ -109,8 +112,12 @@ input[type="checkbox"] {
 /* Dropdown menu styling */
 select {
     color: black; /* Change text color to black */
+    width: auto;
+    height: auto;
+
 }
 
 select option {
+    padding: 10px;
     color: black; /* Ensure that the options inside the dropdown have black text */
 }

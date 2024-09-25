@@ -1,6 +1,51 @@
+
+ 
+  .box-charts{
+  
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 40px;
+    width:100%;
+  
+  }
+  .work-hours-chart {
+    flex: 1;
+    width: 100%; 
+    max-width: 40%; 
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #26263f;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); 
+    text-align: center;
+    margin-top: -20%;
+    margin-right: 10%;
+    margin-left: 45%;
+    margin-bottom: 50px;
+}
+
+  .tableTask-progress-bar-container {
+    flex: 1;
+    width: 100%; 
+    max-width: 20%; 
+    background-color: #26263f;
+    padding: 2px; 
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Adds a shadow for depth */
+    text-align: center;
+    margin-top: -1%;
+    margin-right: 60%;
+    margin-left: 15%;
+    margin-bottom: 20px;
+   
+}
+
+
 .task-table {
     width: 100%;
     margin-top: 20px;
+    margin-left:-5%;
+
   }
   
   .task-section h2 {
@@ -90,31 +135,7 @@
     cursor: pointer;
   }
   
- 
-  
 
-
-  
-  /*.progress-bar-container {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-    margin-top:10px;
-  }*/
-
-  .TableTask-progress-bar-container {
-    width: 100%; 
-    max-width: 400px; 
-    background-color: #26263f;
-    padding: 20px; 
-    border-radius: 20px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Adds a shadow for depth */
-    text-align: center;
-    margin-right: 50%;
-    margin-left: 40%;
-    margin-bottom: 2px;
-   
-}
   
   .progress-bar-container h3 {
     margin-right: 20px;

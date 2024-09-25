@@ -5,7 +5,7 @@ import { calculateTaskCompletionRate } from '../utils/Functions';
 import ProgressBar from './ProgressBar';
 import TaskActionPopup from './TaskActionPopup';
 import TaskRow from './TaskRow';
-
+import WorkHoursChart from './WorkHoursChart';
 const TaskTable = () => {
   const [tasks, setTasks] = useState([]);
   const [selectedTask, setSelectedTask] = useState(null);
@@ -102,10 +102,16 @@ const TaskTable = () => {
 
   return (
     <div className="task-table">
-      <div className="TableTask-progress-bar-container">
+        <div className='box-charts'>
+      <div className="tableTask-progress-bar-container">
         <h3>Task Completion Rate</h3>
         <ProgressBar value={taskCompletionRate} />
       </div>
+      <div className="work-hours-chart">
+          <h3>Work Hours per Day</h3>
+          <WorkHoursChart />
+        </div>
+        </div>
       <div className="todo">
         <h2>To-Do</h2>
       </div>

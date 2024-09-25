@@ -3,7 +3,6 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import '../App.css';
 import '../styles/MyDay.css';
-import Sidebar from './Sidebar';
 
 const MyDay = () => {
   const [isInputVisible, setIsInputVisible] = useState(true); // State to track if input is visible
@@ -84,7 +83,7 @@ const MyDay = () => {
 
   return (
     <div className="my-day-container">
-      <Sidebar className="sidebar" />
+    
       <header className="my-day-header">
         <h1>My Day</h1>
         <p>{new Date().toLocaleDateString('en-US', { weekday: 'long', day: 'numeric', month: 'long' })}</p>

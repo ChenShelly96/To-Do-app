@@ -11,20 +11,20 @@
     padding: 20px 0; /* Adjust padding */
 }
 
-.progress-bar-container {
+/*.progress-bar-container {
     width: 100%; 
     max-width: 300px; 
     background-color: #26263f;
     padding: 20px; 
     border-radius: 20px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Adds a shadow for depth */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); 
     text-align: center;
     margin-top: 70px;
     margin-right: auto;
     margin-left: auto;
     margin-bottom: 20px;
 }
-
+*/
 h2 {
     margin-bottom: 20px;
 }
@@ -38,8 +38,9 @@ h3 {
 }
 
 .work-hours-chart {
-    width: 1000px; 
-    max-width: 1000px; 
+    flex:1;
+    width: 100%; 
+    max-width: 40%; 
     height: 100%;
     padding: 20px;
     border-radius: 10px;
@@ -53,9 +54,15 @@ h3 {
 }
 
 .chart-container {
-    background-color: #9e9a9a;
+   /* background-color: #9e9a9a;
     padding: 20px;
     border-radius: 10px;
     height: 600px;
-   
+   */
+   background-color: #9e9a9a;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 50px;
+    width:100%;
 }

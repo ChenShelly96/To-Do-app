@@ -1,35 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import Chart from 'react-apexcharts';
 import '../styles/ProductivityPage.css';
-import { formatDateTime } from '../utils/Functions';
-
+//import '../styles/TaskTable.css';
 const WorkHoursChart = () => {
   const [workHoursData, setWorkHoursData] = useState([]);
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState(['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']);
 
   useEffect(() => {
     const fetchWorkHours = () => {
       try {
-        // Load tasks from localStorage
-        const savedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
-        console.log(savedTasks);
-        if (Array.isArray(savedTasks)) {
-          // Filter tasks that have an endTime
-          const tasksWithEndTime = savedTasks.filter(task => task.endTime !== null);
-          console.log(tasksWithEndTime);
-
-          // Calculate work hours per day and scale to 1-10
-          const workHoursPerDay = calculateWorkHoursPerDay(tasksWithEndTime);
-          const maxHours = Math.max(...Object.values(workHoursPerDay)); // Find the maximum work hours in any day
-          const scaledWorkHours = Object.values(workHoursPerDay).map(hours => (hours / maxHours) * 10); // Scale to 1-10
-
-          const categoriesData = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-
-          setWorkHoursData(scaledWorkHours);
-          setCategories(categoriesData);
-        } else {
-          console.error('Expected tasks data to be an array, but got:', typeof savedTasks);
-        }
+        // Generate random work hours for each day of the week (Sunday to Saturday)
+        const randomWorkHours = Array.from({ length: 7 }, () => Math.floor(Math.random() * 10) + 1);
+        setWorkHoursData(randomWorkHours);
       } catch (error) {
         console.error('Failed to fetch work hours:', error);
       }
@@ -37,25 +19,6 @@ const WorkHoursChart = () => {
 
     fetchWorkHours();
   }, []);
-
-  const calculateWorkHoursPerDay = (tasks) => {
-    const hoursPerDay = { 0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0 };
-    tasks.forEach(task => {
-      if (task.startTime && task.endTime) {
-        const startTime = new Date(formatDateTime(new Date(task.startTime))); 
-        const endTime = new Date(formatDateTime(new Date(task.endTime)));
-        let hoursWorked = (endTime - startTime) / (1000 * 60 * 60); // Convert milliseconds to hours
-     
-        if (hoursWorked < 1) {
-            hoursWorked = 1;
-        }
-        const dayOfWeek = startTime.getDay();
-        hoursPerDay[dayOfWeek] += hoursWorked;
-      }
-    });
-
-    return hoursPerDay;
-  };
 
   const chartOptions = {
     chart: {
@@ -69,24 +32,24 @@ const WorkHoursChart = () => {
       labels: {
         style: {
           colors: ['#fff'],
-          fontSize: '20px',
+          fontSize: '16px',
         }
       },
-      tickAmount: 6, 
+      tickAmount: 6,
     },
     yaxis: {
       labels: {
         style: {
           colors: ['#fff'],
-          fontSize: '20px',
+          fontSize: '16px',
         },
         formatter: function (val) {
-          return Math.round(val); 
+          return Math.round(val);
         }
       },
       min: 0,
-      max: 10, 
-      tickAmount: 10, 
+      max: 10,
+      tickAmount: 10,
     },
     grid: {
       padding: {
@@ -109,10 +72,10 @@ const WorkHoursChart = () => {
     dataLabels: {
       enabled: false
     },
-    colors: ['#EE891B'],
+    colors: ['#4CAF50'],
     markers: {
       size: 5,
-      colors: ['#EE891B'],
+      colors: ['#4CAF50'],
       strokeColors: '#fff',
       strokeWidth: 2,
     },
@@ -134,7 +97,7 @@ const WorkHoursChart = () => {
         options={chartOptions}
         series={chartSeries}
         type="area"
-        height={600}
+        height={400}
         width="100%"
       />
     </div>

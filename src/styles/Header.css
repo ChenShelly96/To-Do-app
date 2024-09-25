@@ -3,7 +3,7 @@
 /* Container for the header to align it to the top-right corner */
 .header-container {
     position: absolute;
-    top: 10px;
+    top: 90px;
     right: 20px;
     text-align: right;
     display: flex;
@@ -11,17 +11,36 @@
     align-items: center;
     height: 100px; 
 }
-
+.navbar {
+    background-color: #f8f9fa;
+  }
+  .navbar-expand-lg .navbar-nav{
+    margin-left: 10%;
+    margin-right: 40%;
+  }
+li {
+margin-left: 600px;
+   
+}
+  
+  .navbar .navbar-brand {
+    color: #333;
+  }
+.navbar-nav .nav-link {
+   
+    font-size: 30px;
+    color: #1b528d; 
+  }
 
 .header h1 {
     margin: 0;
-    font-size: 36px; 
+    font-size: 46px; 
     color: #9B9B9B; 
 }
 
 
 .header p {
     margin: 0;
-    font-size: 13px;
+    font-size: 23px;
     color: #e4e4e4; 
 }
